@@ -7,6 +7,10 @@ pools, memory efficiency) by implementing them directly.
 
 > Status: **Phase 1 — Redis In-Memory Engine & Atomic Operations** ✅
 
+📚 **New to this?** Read [`docs/phase-1-learning.md`](docs/phase-1-learning.md) —
+a plain-English, no-jargon walkthrough of every Phase 1 concept (LIST vs ZSET,
+persistence, pipelining, race conditions, and more).
+
 ---
 
 ## Phase 1 at a glance
