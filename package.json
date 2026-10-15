@@ -1,0 +1,40 @@
+{
+  "name": "distributed-task-scheduler",
+  "version": "0.1.0",
+  "description": "Production-grade, fault-tolerant Distributed Task Scheduler & Event-Driven Engine (Node.js + TypeScript + Redis).",
+  "private": true,
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "dev:watch": "nodemon --watch src --ext ts --exec \"ts-node src/index.ts\"",
+    "bench": "ts-node src/scripts/benchmark-push.ts",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "redis",
+    "queue",
+    "task-scheduler",
+    "worker",
+    "typescript",
+    "distributed-systems"
+  ],
+  "dependencies": {
+    "dotenv": "^18.0.8",
+    "ioredis": "^6.0.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

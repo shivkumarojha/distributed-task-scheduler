@@ -1,0 +1,37 @@
+# Local Redis for the Distributed Task Scheduler.
+#
+# Why the extra flags?
+#   appendonly yes                      -> enable AOF (per-write durability)
+#   appendfsync everysec                -> flush the AOF to disk ~every second
+#                                          (fast; at most ~1s of writes lost on OS crash)
+#   save 60 1000                        -> also keep periodic RDB snapshots as a second net
+#   maxmemory-policy noeviction         -> a job queue must NEVER silently evict jobs
+#
+# Usage:  docker compose up -d
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: dts-redis
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+      - --appendfsync
+      - everysec
+      - --save
+      - "60"
+      - "1000"
+      - --maxmemory-policy
+      - noeviction
+    ports:
+      - "6379:6379"
+    volumes:
+      - dts-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  dts-redis-data:
